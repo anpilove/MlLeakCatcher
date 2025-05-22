@@ -71,7 +71,6 @@ class BaseCheck(ABC):
                 report_path (str): Base path for report artifacts
             """
             self.task_type = task_type
-            print(options)
             self.options = options
             self.report_path = f"{report_path}/tests_targetleak"
             self.name = self.__class__.__name__.lower().replace("check", "")
@@ -139,7 +138,6 @@ class IdentifierTargetPPSCheck(BaseCheck):
         X = train_ds.data[identifiers]
         y = train_ds.data[train_ds.target_col]
 
-        print(self.options)
         # Calculate PPS using EnhancedPPS
         pps_scores = EnhancedPPS.calculate_pps(
             X=X,
@@ -156,8 +154,6 @@ class IdentifierTargetPPSCheck(BaseCheck):
             columns=["Identifier", "Predictive Power Score (PPS)"],
         )
 
-        print(pps_scores)
-        print(self.warning_threshold)
         # Identify warning features
         warning_features = [
             col for col, score in pps_scores.items()

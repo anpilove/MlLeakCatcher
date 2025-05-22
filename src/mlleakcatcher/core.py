@@ -120,4 +120,4 @@ class MlLeakCatcher:
         remaining_features = [col for col in train_data.columns
                              if col not in excluded_columns and col not in deleted_features]
 
-        return remaining_features
+        return remaining_features, self.test_results
